@@ -1,0 +1,11 @@
+require('../src/api/rest/categories/model');
+require('../src/api/rest/images/model');
+require('../src/api/rest/media/model');
+require('../src/api/rest/options/model');
+require('../src/api/rest/optionsValues/model');
+require('../src/api/rest/productCategories/model');
+require('../src/api/rest/productOptions/model');
+require('../src/api/rest/products/model');
+require('../src/api/rest/productVariants/model');
+require('../src/api/rest/users/model');
+require('../src/api/rest/variantValues/model');
