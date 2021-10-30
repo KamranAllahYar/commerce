@@ -3,7 +3,7 @@ const version = '/v1/';
 const { ValidationError } = require('express-validation');
 module.exports = function( app ) {
   app.use(base + version + 'users', require('../src/api/rest/users/routes'));
-  app.use(base + version + 'auth', require('../src/api/rest/auth/auth.route'));
+  app.use(base + version + 'auth', require('./api/rest/auth/routes'));
   app.use(base + version + 'products/options', require('../src/api/rest/productOptions/routes'));
   app.use(base + version + 'products/variants', require('../src/api/rest/productVariants/routes'));
   app.use(base + version + 'products/variants', require('../src/api/rest/productVariants/routes'));
