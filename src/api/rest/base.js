@@ -32,6 +32,7 @@ module.exports = class Base {
   }
 
   async find ( req, res, next ) {
+    req.session.test = 'hi';
     try {
       let query = req.query;
       const pageSize = parseInt(req.query.pageSize) || 15;

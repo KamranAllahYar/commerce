@@ -5,9 +5,6 @@ module.exports = async ( req, res, next ) => {
   let response;
   response = await authController.isTokenAuth(req);
   if ( !response ) {
-    response = await authController.isSessionAuth(req);
-  }
-  if ( !response ) {
     return res.status(403).send({ message: 'Unauthorized' });
   }
   next();

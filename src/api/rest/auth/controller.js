@@ -43,12 +43,12 @@ module.exports = class AuthController extends Base {
       delete user.password;
       const matched = await bcrypt.compare(req.body.password, user.password);
       if ( matched ) {
-        if ( req.body.token ) {
+        // if ( req.body.token ) {
           return this.token(req, res, user);
-        }
-        else {
-          return this.session(req, res, user);
-        }
+        // }
+        // else {
+          // return this.session(req, res, user);
+        // }
       }
       else {
         return res.status(this.UNAUTHORIZED)
@@ -123,7 +123,7 @@ module.exports = class AuthController extends Base {
     req.token = bearerToken;
     try {
       const decoded = await jwt.verify(bearerToken, process.env.JWT_SECRET);
-      if ( decoded ) {
+      if ( !decoded ) {
         return false;
       }
       const users = new UserController();
