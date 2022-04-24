@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken');
-const AuthController = require('../api/rest/auth/controller');
+const AuthController = require('../api/auth/controller');
 module.exports = async ( req, res, next ) => {
   const authController = new AuthController();
   let response;

@@ -5,3 +5,9 @@ global.emptyObject = ( object ) => {
 };
 global.isNumeric = ( value ) => !isNaN(value);
 global.isObject = ( value ) => typeof value === 'object';
+global.SUCCESS = 200;
+global.CONFLICTS = 409;
+global.SERVER_ERROR = 500;
+global.UNAUTHORIZED = 403;
+global.PRECONDITION_FAILED = 412;
+global.NOT_FOUND = 404;
