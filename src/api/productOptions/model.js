@@ -29,12 +29,11 @@ ProductOptions.init({
 }, {
   // Other model options go here
   sequelize, // We need to pass the connection instance
-  modelName: 'ProductOptions', // We need to choose the model name
+  modelName: 'product_options', // We need to choose the model name
   tableName: 'product_options',
   createdAt: 'created_at',
   updatedAt: 'updated_at',
   underscored: true,
 });
-ProductOptions.belongsTo(Product);
-ProductOptions.belongsTo(Option);
+ProductOptions.belongsTo(Option,{foreignKey:'option_id'});
 module.exports = ProductOptions;

@@ -1,3 +1,7 @@
+const CacheService = require('../../services/cache');
+const ttl = 60 * 60; // cache for 1 Hour
+
+
 global.emptyObject = ( object ) => {
   return object &&
       Object.keys(object).length === 0 &&
@@ -5,6 +9,7 @@ global.emptyObject = ( object ) => {
 };
 global.isNumeric = ( value ) => !isNaN(value);
 global.isObject = ( value ) => typeof value === 'object';
+global.CACH = new CacheService(ttl);
 global.SUCCESS = 200;
 global.CONFLICTS = 409;
 global.SERVER_ERROR = 500;

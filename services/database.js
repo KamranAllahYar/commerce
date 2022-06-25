@@ -5,5 +5,6 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
   logging: ( result ) => {
     console.log(result);
   },
+
 });
 module.exports = sequelize;

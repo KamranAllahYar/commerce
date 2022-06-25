@@ -1,13 +1,9 @@
 const config = require('../../config/config.json');
 const { Op } = require('sequelize');
-const CacheService = require('../../services/cache');
-const ttl = 60 * 60; // cache for 1 Hour
 const slugify = require('slugify');
 const { queryBuilder } = require('../lib/helpers');
 module.exports = class Base {
   MODEL;
-  CACHE = new CacheService(ttl);
-
   validateRequest ( params, requiredFields ) {
     let validator = [];
     for ( let field of requiredFields ) {
@@ -45,6 +41,7 @@ module.exports = class Base {
       });
     }
   }
+
   async get ( req, res ) {
     const results = await this.MODEL.findByPk(req.params.id);
     return res.send(results);

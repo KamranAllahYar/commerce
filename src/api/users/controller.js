@@ -16,7 +16,7 @@ module.exports = class UserController extends Base {
     const page = parseInt(req.query.page) || 0;
     const pageSize = parseInt(req.query.pageSize) || 15;
     query = { ...query, ...this.paginate(page, pageSize) };
-    const results = await this.MODEL.findAndCountAll(query);
+    const results = await this.MODEL.findAll(query);
     return res.send({
       pageSize,
       page, ...results,
@@ -33,7 +33,7 @@ module.exports = class UserController extends Base {
 
   async findUserById ( userId ) {
     const key = `getAuthUser_${ userId }`;
-    return this.CACHE.get(key, async () => {
+    return CACH.get(key, async () => {
       let user = await this.MODEL.findByPk(userId);
       user = this.toJSON(user);
       delete user.password;

@@ -23,10 +23,7 @@ module.exports = class AuthController extends Base {
     user.lastName = req.body.lastName;
     user.password = await bcrypt.hash(req.body.password, 10);
     await user.save();
-    return res.send({
-      'message': 'success',
-      user,
-    });
+    return this.token(req, res, user);
   }
 
   async login ( req, res ) {
@@ -39,14 +36,13 @@ module.exports = class AuthController extends Base {
       },
     });
     if ( user ) {
-      delete user.password;
       const matched = await bcrypt.compare(req.body.password, user.password);
       if ( matched ) {
         // if ( req.body.token ) {
-          return this.token(req, res, user);
+        return this.token(req, res, user);
         // }
         // else {
-          // return this.session(req, res, user);
+        // return this.session(req, res, user);
         // }
       }
       else {
@@ -58,6 +54,7 @@ module.exports = class AuthController extends Base {
       return res.status(this.NOT_FOUND).send({ message: 'User Not Found!' });
     }
   }
+
   async logout ( req, res ) {
     const user = await User.findOne({
       where: {
@@ -104,7 +101,7 @@ module.exports = class AuthController extends Base {
     req.session.loggedIn = true;
     req.session.userId = user.id;
     return res.send({
-      token:'',
+      token: '',
       user,
     });
   }
