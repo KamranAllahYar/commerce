@@ -4,20 +4,6 @@ const slugify = require('slugify');
 const { queryBuilder } = require('../lib/helpers');
 module.exports = class Base {
   MODEL;
-  validateRequest ( params, requiredFields ) {
-    let validator = [];
-    for ( let field of requiredFields ) {
-      if ( !params[field.name] ) {
-        validator.push({
-          fieldName: field.name,
-          message: field.message ? field.message : field.name +
-              ' field is required!',
-        });
-      }
-    }
-    return validator;
-  }
-
   toJSON ( payload ) {
     return JSON.parse(JSON.stringify(payload));
   }

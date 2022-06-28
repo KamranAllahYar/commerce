@@ -1,7 +1,5 @@
 const User = require('./model');
 const Base = require('../base');
-// eslint-disable-next-line no-unused-vars
-const { Op } = require('sequelize');
 module.exports = class UserController extends Base {
   constructor () {
     super();
@@ -33,7 +31,7 @@ module.exports = class UserController extends Base {
 
   async findUserById ( userId ) {
     const key = `getAuthUser_${ userId }`;
-    return CACH.get(key, async () => {
+    return CACHE.get(key, async () => {
       let user = await this.MODEL.findByPk(userId);
       user = this.toJSON(user);
       delete user.password;
