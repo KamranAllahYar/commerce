@@ -16,7 +16,9 @@ module.exports = class ProductController extends Base {
       },
     });
     if ( exists ) {
-      return this.CONFLICTS(res, 'Sku already exists. Sku must be unique');
+      return res.status(CONFLICTS).send({
+        status: false, message: 'Sku already exists. Sku must be unique',
+      });
     }
     if ( !req.body.slug ) {
       req.body.slug = await this.generateSlug(req.body.name);
@@ -35,7 +37,9 @@ module.exports = class ProductController extends Base {
   async beforeUpdate ( req, res, next ) {
     const exists = await this.MODEL.findByPk(req.params.id);
     if ( !exists ) {
-      return this.NOT_FOUND(res, 'Record Not Found');
+      return res.status(NOT_FOUND).send({
+        status: false, message: 'Record Not Found',
+      });
     }
     if ( req.body.sku && exists.sku !== req.body.sku ) {
       const exists = await this.MODEL.findOne({

@@ -8,7 +8,7 @@ class ProductCategory extends Model {
 
 ProductCategory.init({
   // Model attributes are defined here
-  product_id: {
+  productId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -17,7 +17,7 @@ ProductCategory.init({
     },
     allowNull: false,
   },
-  category_id: {
+  categoryId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -27,12 +27,11 @@ ProductCategory.init({
     allowNull: false,
   },
 }, {
+  underscored: true,
   // Other model options go here
   sequelize, // We need to pass the connection instance
-  modelName: 'ProductCategory', // We need to choose the model name
+  modelName: 'product_category', // We need to choose the model name
   tableName: 'product_categories',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
 });
 
 module.exports = ProductCategory;

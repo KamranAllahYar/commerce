@@ -7,7 +7,7 @@ class OptionValues extends Model {
 
 OptionValues.init({
   // Model attributes are defined here
-  option_id: {
+  optionId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -23,11 +23,9 @@ OptionValues.init({
 }, {
   // Other model options go here
   sequelize, // We need to pass the connection instance
+  underscored: true,
   modelName: 'option_values', // We need to choose the model name
   tableName: 'option_values',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  underscored: true,
 });
 OptionValues.belongsTo(Option);
 module.exports = OptionValues;

@@ -9,7 +9,7 @@ class VariantValue extends Model {
 
 VariantValue.init({
   // Model attributes are defined here
-  option_id: {
+  optionId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -18,7 +18,7 @@ VariantValue.init({
     },
     allowNull: false,
   },
-  variant_id: {
+  variantId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -27,7 +27,7 @@ VariantValue.init({
     },
     allowNull: false,
   },
-  value_id: {
+  valueId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -62,12 +62,10 @@ VariantValue.init({
   },
 }, {
   // Other model options go here
-  sequelize, // We need to pass the connection instance
-  modelName: 'variant_value', // We need to choose the model name
-  tableName: 'variant_values',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
   underscored: true,
+  sequelize, // We need to pass the connection instance
+  modelName: 'variant_values', // We need to choose the model name
+  tableName: 'variant_values',
 
 });
 

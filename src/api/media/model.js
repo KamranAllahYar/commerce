@@ -6,7 +6,7 @@ class Media extends Model {
 
 Media.init({
   // Model attributes are defined here
-  file_name: {
+  fileName: {
     type: DataTypes.STRING,
     index: true,
     allowNull: true,
@@ -24,12 +24,11 @@ Media.init({
     allowNull: true,
   },
 }, {
+  underscored: true,
   // Other model options go here
   sequelize, // We need to pass the connection instance
   modelName: 'Media', // We need to choose the model name
   tableName: 'media',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
 });
 
 module.exports = Media;

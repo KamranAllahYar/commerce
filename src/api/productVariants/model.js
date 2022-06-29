@@ -10,7 +10,7 @@ class ProductVariant extends Model {
 
 ProductVariant.init({
   // Model attributes are defined here
-  product_id: {
+  productId: {
     type: DataTypes.INTEGER,
     index: true,
     references: {
@@ -42,12 +42,11 @@ ProductVariant.init({
     allowNull: false,
   },
 }, {
+  underscored: true,
   // Other model options go here
   sequelize, // We need to pass the connection instance
-  modelName: 'ProductVariant', // We need to choose the model name
+  modelName: 'product_variant', // We need to choose the model name
   tableName: 'product_variants',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
 });
 
 module.exports = ProductVariant;

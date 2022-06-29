@@ -14,7 +14,7 @@ module.exports = class UserController extends Base {
     const page = parseInt(req.query.page) || 0;
     const pageSize = parseInt(req.query.pageSize) || 15;
     query = { ...query, ...this.paginate(page, pageSize) };
-    const results = await this.MODEL.findAll(query);
+    const results = await this.MODEL.findAndCountAll(query);
     return res.send({
       pageSize,
       page, ...results,

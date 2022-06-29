@@ -14,12 +14,10 @@ Option.init({
   },
 }, {
   // Other model options go here
+  underscored: true,
   sequelize, // We need to pass the connection instance
   modelName: 'options', // We need to choose the model name
   tableName: 'options',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
-  underscored: true,
 });
 
 module.exports = Option;

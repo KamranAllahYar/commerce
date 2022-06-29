@@ -22,11 +22,11 @@ Category.init({
     unique: true,
     allowNull: false,
   },
-  meta_title: {
+  metaTitle: {
     type: DataTypes.STRING,
     defaultValue: null,
   },
-  meta_description: {
+  metaDescription: {
     type: DataTypes.STRING,
     defaultValue: null,
   },
@@ -37,12 +37,11 @@ Category.init({
     allowNull: false,
   },
 }, {
+  underscored: true,
   // Other model options go here
   sequelize, // We need to pass the connection instance
   modelName: 'Category', // We need to choose the model name
   tableName: 'categories',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
 });
 
 module.exports = Category;

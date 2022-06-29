@@ -6,17 +6,17 @@ class Image extends Model {
 
 Image.init({
   // Model attributes are defined here
-  model_id: {
+  modelId: {
     type: DataTypes.INTEGER,
     index: true,
     allowNull: false,
   },
-  model_type: {
+  modelType: {
     type: DataTypes.INTEGER,
     index: true,
     allowNull: false,
   },
-  media_id: {
+  mediaId: {
     type: DataTypes.INTEGER,
     index: true,
     allowNull: false,
@@ -28,12 +28,11 @@ Image.init({
     allowNull: false,
   },
 }, {
+  underscored: true,
   // Other model options go here
   sequelize, // We need to pass the connection instance
   modelName: 'Image', // We need to choose the model name
   tableName: 'images',
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
 });
 
 module.exports = Image;
