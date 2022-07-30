@@ -22,5 +22,5 @@ routesSetup(app);
 const sequelize = require('./services/database');
 sequelize.authenticate().then().catch(console.error);
 require('./src/models');
-sequelize.sync({ force: true }).then();
+// sequelize.sync({ force: true }).then();
 module.exports = app;
