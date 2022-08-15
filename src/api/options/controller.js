@@ -30,7 +30,7 @@ module.exports = class OptionController extends Base {
   async update ( req, res, next ) {
     const result = await this.MODEL.findByPk(req.params.id);
     if ( !result ) {
-      return this.NOT_FOUND(res, 'Record Not Found');
+      return NOT_FOUND(res, 'Record Not Found');
     }
     const conflicts = await this.MODEL.findOne({
       where: {

@@ -76,7 +76,7 @@ module.exports = class OptionController extends Base {
     try {
       const result = await this.MODEL.findByPk(req.params.id);
       if ( !result ) {
-        return this.NOT_FOUND(res, 'Record Not Found');
+        return NOT_FOUND(res, 'Record Not Found');
       }
       const optionExists = await this.OPTION_MODEl.findByPk(req.body.option_id);
       if ( !optionExists ) {

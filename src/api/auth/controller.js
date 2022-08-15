@@ -10,8 +10,7 @@ module.exports = class AuthController extends Base {
       where: {
         [Op.or]: [
           { email: req.body.email },
-          { username: req.body.username ? req.body.username : null },
-        ],
+          { username: req.body.username ? req.body.username : null }],
       },
     });
     if ( findUser ) {
@@ -31,8 +30,7 @@ module.exports = class AuthController extends Base {
       where: {
         [Op.or]: [
           { email: req.body.email },
-          { username: req.body.username ? req.body.username : null },
-        ],
+          { username: req.body.username ? req.body.username : null }],
       },
     });
     if ( user ) {
@@ -46,12 +44,15 @@ module.exports = class AuthController extends Base {
         // }
       }
       else {
-        return res.status(this.UNAUTHORIZED)
-                  .send({ message: 'password is incorrect' });
+        return res.status(UNAUTHORIZED)
+                  .send({
+                    code: UNAUTHORIZED, message: 'password is incorrect',
+                  });
       }
     }
     else {
-      return res.status(this.NOT_FOUND).send({ message: 'User Not Found!' });
+      return res.status(NOT_FOUND)
+                .send({ code: NOT_FOUND, message: 'User Not Found!' });
     }
   }
 
@@ -60,8 +61,7 @@ module.exports = class AuthController extends Base {
       where: {
         [Op.or]: [
           { email: req.body.email },
-          { username: req.body.username ? req.body.username : null },
-        ],
+          { username: req.body.username ? req.body.username : null }],
       },
     });
     if ( user ) {
@@ -76,12 +76,12 @@ module.exports = class AuthController extends Base {
         }
       }
       else {
-        return res.status(this.UNAUTHORIZED)
+        return res.status(UNAUTHORIZED)
                   .send({ message: 'password is incorrect' });
       }
     }
     else {
-      return res.status(this.NOT_FOUND).send({ message: 'User Not Found!' });
+      return res.status(NOT_FOUND).send({ message: 'User Not Found!' });
     }
   }
 
@@ -92,8 +92,8 @@ module.exports = class AuthController extends Base {
     }
     const token = await jwt.sign(this.toJSON(user), process.env.JWT_SECRET, expiry);
     return res.send({
-      token,
-      user,
+      code: SUCCESS,
+      message: 'Login Success', result: { token, user },
     });
   }
 
@@ -101,8 +101,9 @@ module.exports = class AuthController extends Base {
     req.session.loggedIn = true;
     req.session.userId = user.id;
     return res.send({
-      token: '',
-      user,
+      code: SUCCESS,
+      message: 'Login Success',
+      token: '', result: { user },
     });
   }
 

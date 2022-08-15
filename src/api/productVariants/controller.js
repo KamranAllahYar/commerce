@@ -13,7 +13,7 @@ module.exports = class ProductVariantController extends Base {
   async beforeCreate ( req, res, next ) {
     const productExists = await this.PRODUCT_MODEl.findByPk(req.body.product_id);
     if ( !productExists ) {
-      return this.NOT_FOUND(res, 'Invalid product id');
+      return NOT_FOUND(res, 'Invalid product id');
     }
     const skuExists = await this.MODEL.findOne({
       where: {
@@ -31,12 +31,12 @@ module.exports = class ProductVariantController extends Base {
   async beforeUpdate ( req, res, next ) {
     const exists = await this.MODEL.findByPk(req.params.id);
     if ( !exists ) {
-      return this.NOT_FOUND(res, 'Record Not Found');
+      return NOT_FOUND(res, 'Record Not Found');
     }
     if ( req.body.product_id && exists.product_id !== req.body.product_id ) {
       const productExists = await this.PRODUCT_MODEl.findByPk(req.body.product_id);
       if ( !productExists ) {
-        return this.NOT_FOUND(res, 'Invalid product id');
+        return NOT_FOUND(res, 'Invalid product id');
       }
     }
     if ( req.body.sku && exists.sku !== req.body.sku ) {
