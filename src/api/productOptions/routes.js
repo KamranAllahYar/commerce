@@ -1,4 +1,4 @@
-const express = require('express');
+const { Router } = require('express');
 const AUTH = require('../../middlewares/auth');
 const { validate } = require('express-validation');
 const { create, update } = require('./validation');
@@ -7,7 +7,7 @@ const Model = require('./model');
 const ProductModel = require('../products/model');
 const OptionModel = require('../options/model');
 const ctrl = new Controller(Model,ProductModel,OptionModel);
-const router = express.Router();
+const router = Router();
 router.get('/', AUTH, ctrl.find.bind(ctrl));
 router.post('/', AUTH, validate(create, { statusCode: 412 }, {}), ctrl.create.bind(ctrl));
 router.get('/:id', AUTH, ctrl.get.bind(ctrl));

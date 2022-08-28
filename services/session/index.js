@@ -1,17 +1,21 @@
-const session = require('express-session');
-const mysqlSession = require('./sqlSession');
-const redisSession = require('./redisSession');
+const index = require('express-session');
+const mysqlSession = require('./sql');
+const redisSession = require('./redis');
 
 module.exports = function( app ) {
   let store = null;
-  if ( process.env.SESSION_STORAGE === 'mysql' ) {
-    store = mysqlSession(session);
-  }
-  else if ( process.env.SESSION_STORAGE === 'redis' ) {
-    store = redisSession(session);
+  switch (process.env.SESSION_STORAGE){
+    case 'mysql':
+      store = mysqlSession(index);
+      break;
+    case 'redis':
+      store = redisSession(index);
+      break;
+    default:
+      break;
   }
   console.log(process.env.SESSION_STORAGE);
-  app.use(session({
+  app.use(index({
     store,
     secret: process.env.SESSION_SECRET,
     resave: false,
